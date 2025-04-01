@@ -26,25 +26,27 @@ function App() {
   return (
     <>
       <Container className='my-4'>
-        <Form>
-          <Form.Group className="mb-3">
+        <Form onSubmit={handleSubmit}>
+          <Form.Group className="mb-3" controlId="name">
             <Form.Label>Nom</Form.Label>
             <Form.Control type="name" name='name' placeholder="Entrez votre nom" required value={formData.name} onChange={handleChange} />
           </Form.Group>
-          <Form.Group className="mb-3">
+          <Form.Group className="mb-3" controlId="date">
             <Form.Label>Date</Form.Label>
             <Form.Control type="date" name='date' required value={formData.date} onChange={handleChange}/>
           </Form.Group>
-          <Form.Label>Priorité</Form.Label>
-          <Form.Select aria-label="Default select example" name='priority' value={formData.priority} onChange={handleChange}>
-            <option value="low">Basse</option>
-            <option value="medium">Moyenne</option>
-            <option value="high">Elevée</option>
-          </Form.Select>
-          <Form.Group className="my-3" controlId="formBasicCheckbox">
-            <Form.Check type="checkbox" name='isCompleted' label="Complet ?" required value={formData.isCompleted} onChange={handleChange}/>
+          <Form.Group className="my-3" controlId="priority">
+            <Form.Label>Priorité</Form.Label>
+            <Form.Select aria-label="Default select example" name='priority' value={formData.priority} onChange={handleChange}>
+              <option value="low">Basse</option>
+              <option value="medium">Moyenne</option>
+              <option value="high">Elevée</option>
+            </Form.Select>
           </Form.Group>
-          <Button variant="primary" type="submit" onClick={handleSubmit}>
+          <Form.Group className="my-3" controlId="isCompleted">
+            <Form.Check type="checkbox" name='isCompleted' label="Complet ?" value={formData.isCompleted} onChange={handleChange}/>
+          </Form.Group>
+          <Button variant="primary" type="submit">
             Submit
           </Button>
         </Form>
