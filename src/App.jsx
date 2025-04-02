@@ -15,7 +15,10 @@ const schema = yup.object().shape({
     .required("La date est requise")
     .matches(/^(0[1-9]|[12][0-9]|3[01])\/(0[1-9]|1[0-2])\/\d{4}$/, 'Le format doit être jj/mm/AAAA')
     .test("max-date", "La date ne doit pas être antérieure à la date du jour", (value) => {
-      return new Date(value) >= new Date();
+      const [day, month, year] = value.split('/');
+      const reconstructedDate = new Date(`${year}-${month}-${day}`);
+      reconstructedDate.setDate(reconstructedDate.getDate() + 1); // Add 1 day so current date is valid.
+      return new Date(reconstructedDate) >= new Date();
     }),
   priority: yup
     .string()
