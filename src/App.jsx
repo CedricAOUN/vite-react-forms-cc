@@ -23,6 +23,8 @@ const schema = yup.object().shape({
   priority: yup
     .string()
     .oneOf(["low", "medium", "high"], "La priorité doit être 'Basse', 'Moyenne' ou 'Elevée"),
+  isCompleted: yup
+    .bool()
 });
 
 function App() { 
